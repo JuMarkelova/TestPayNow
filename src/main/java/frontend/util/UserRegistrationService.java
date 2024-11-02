@@ -27,6 +27,7 @@ public class UserRegistrationService {
         this.objectMapper = new ObjectMapper();
     }
 
+//    Паттерн билдер для сборки объекта
     public String[] registerNewUser(String email, String password, String name, String number, String pin) throws Exception {
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("email", email);
@@ -36,6 +37,7 @@ public class UserRegistrationService {
         requestBody.put("pin", pin);
         String requestBodyJson = objectMapper.writeValueAsString(requestBody);
 
+//        RestAssured и аналоги
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(REGISTER_URL))
                 .header("Content-Type", "application/json")

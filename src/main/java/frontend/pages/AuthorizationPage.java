@@ -15,6 +15,7 @@ public class AuthorizationPage extends BasePage {
         return openRegistered(authorizationUrlPath);
     }
 
+//    Сделать private если не используется нигде
     public void putOnFlagAcceptTerms() {
         termsCheckbox.click();
     }
@@ -22,11 +23,13 @@ public class AuthorizationPage extends BasePage {
     public void submit() {
         loginButton.click();
     }
+
+// Не должно быть зависимостей от другий пейджей
     public HomePage fillAuthFormAndAuth(String email, String password) {
         emailField.setValue(email);
         passwordField.setValue(password);
         putOnFlagAcceptTerms();
         submit();
-        return new HomePage();
+        return new HomePage(); // Тоже подумать стоит ли возвращать эксземпляр или все таки создавать его в тесте
     }
 }
