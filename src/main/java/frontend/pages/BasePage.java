@@ -4,6 +4,7 @@ import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
 import frontend.util.DataGenerator;
 import frontend.util.UserRegistrationService;
+
 import java.io.FileReader;
 
 import java.io.FileInputStream;
@@ -23,8 +24,8 @@ public class BasePage {
         Properties properties = new Properties();
         String baseUrl = "";
 
-// Относительный путь до файла посмотреть класс FileReader
-        try (InputStream input = new FileInputStream("/Users/iuliia/javaStudy/mentorSession/projPayNow/TestPayNow/src/main/resources/test.properties")) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("test.properties");
+        ) {
             properties.load(input);
 
             baseUrl = properties.getProperty("base.url");
@@ -40,7 +41,7 @@ public class BasePage {
         Selenide.open(baseUrl + urlPath);
     }
 
-//    Подумать
+    //    Подумать
     public String[] openRegistered(String urlPath) throws Exception {
         UserRegistrationService userRegistrationService = new UserRegistrationService();
         Faker faker = new Faker();
