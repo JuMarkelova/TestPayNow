@@ -14,13 +14,11 @@ public class AuthorizationTest {
 
     @Test
     public void successAuth() throws Exception {
-        String[] creds = authorizationPage.open();
-        authorizationPage.fillAuthForm(creds[0], creds[1]);
+        authorizationPage.open();
+        authorizationPage.fillAuthForm(authorizationPage.getLogin(), authorizationPage.getPassword());
         authorizationPage.putOnFlagAcceptTerms();
         authorizationPage.submit();
-
         HomePage homePage = new HomePage();
-
         assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
         assertEquals(baseUrl + "/home", url(), "Wrong url");
     }

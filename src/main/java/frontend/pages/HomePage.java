@@ -1,6 +1,5 @@
 package frontend.pages;
 
-
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
@@ -14,7 +13,8 @@ public class HomePage extends BasePage {
         return homeLabel;
     }
 
-    public String[] open() throws Exception {
-        return openRegistered(homeUrlPath);
+    public void open() throws Exception {
+        register();
+        open(homeUrlPath);
     }
 }

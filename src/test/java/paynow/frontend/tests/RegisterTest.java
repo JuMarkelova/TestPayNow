@@ -7,16 +7,15 @@ import org.junit.jupiter.api.Test;
 import frontend.pages.RegistrationPage;
 
 import static com.codeborne.selenide.Configuration.baseUrl;
-import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegisterTest {
     private RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     public void registerSuccessfully() throws Exception {
-        registrationPage.open();
         Faker faker = new Faker();
         String email = faker.internet().emailAddress();
         String password = faker.internet().password();
@@ -32,8 +31,7 @@ public class RegisterTest {
         registrationPage.putOnFlagAcceptTerms();
         registrationPage.submit();
         HomePage homePage = new HomePage();
-        sleep(3000);
-        assertEquals(homePage.getHomeLabel().exists(), true, "There is no Home Element");
+        assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
         assertEquals(baseUrl + "/home", url(), "Wrong url");
     }
 }

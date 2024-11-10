@@ -7,13 +7,24 @@ import frontend.util.UserRegistrationService;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
 
 public class BasePage {
     String baseUrl;
+    private String login;
+    private String password;
 
     public BasePage() {
         baseUrl = getBaseUrl();
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     private String getBaseUrl() {
@@ -32,21 +43,21 @@ public class BasePage {
         return baseUrl;
     }
 
-    public void open(String urlPath) throws Exception {
+    public void open(String urlPath) {
         Selenide.open(baseUrl + urlPath);
     }
 
-    //    Подумать
-    public String[] openRegistered(String urlPath) throws Exception {
+    public void register() {
         UserRegistrationService userRegistrationService = new UserRegistrationService();
         Faker faker = new Faker();
-        String email = faker.internet().emailAddress();
-        String password = faker.internet().password();
-        String name = faker.name().firstName();
-        String phoneNumber = DataGenerator.numberGenerator();
-        String pin = DataGenerator.numberGenerator();
-        String[] creds = userRegistrationService.registerNewUser(email, password, name, phoneNumber, pin);
-        Selenide.open(baseUrl + urlPath);
-        return creds;
+        UserRegistrationService.UserRequestBuilder builder = new UserRegistrationService.UserRequestBuilder()
+                .withEmail(faker.internet().emailAddress())
+                .withPassword(faker.internet().password())
+                .withName(faker.name().firstName())
+                .withNumber(DataGenerator.numberGenerator())
+                .withPin(DataGenerator.numberGenerator());
+        Map<String, String> credentials = userRegistrationService.registerNewUser(builder);
+        this.login = credentials.get("email");
+        this.password = credentials.get("password");
     }
 }

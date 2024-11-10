@@ -11,8 +11,9 @@ public class AuthorizationPage extends BasePage {
     SelenideElement termsCheckbox = $("#remember");
     SelenideElement loginButton = $("button[type='submit']");
 
-    public String[] open() throws Exception {
-        return openRegistered(authorizationUrlPath);
+    public void open() throws Exception {
+        register();
+        open(authorizationUrlPath);
     }
 
     public void putOnFlagAcceptTerms() {
