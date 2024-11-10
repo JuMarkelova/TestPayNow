@@ -30,7 +30,8 @@ public class RegisterTest {
                 phoneNumber,
                 pin);
         registrationPage.putOnFlagAcceptTerms();
-        HomePage homePage = registrationPage.submit();
+        registrationPage.submit();
+        HomePage homePage = new HomePage();
         sleep(3000);
         assertEquals(homePage.getHomeLabel().exists(), true, "There is no Home Element");
         assertEquals(baseUrl + "/home", url(), "Wrong url");

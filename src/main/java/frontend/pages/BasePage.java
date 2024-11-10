@@ -5,13 +5,9 @@ import com.github.javafaker.Faker;
 import frontend.util.DataGenerator;
 import frontend.util.UserRegistrationService;
 
-import java.io.FileReader;
-
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-
 
 public class BasePage {
     String baseUrl;
@@ -24,8 +20,7 @@ public class BasePage {
         Properties properties = new Properties();
         String baseUrl = "";
 
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream("test.properties");
-        ) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("test.properties")) {
             properties.load(input);
 
             baseUrl = properties.getProperty("base.url");

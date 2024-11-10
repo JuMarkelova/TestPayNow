@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class RegistrationPage extends BasePage{
+public class RegistrationPage extends BasePage {
     private String registerUrlPath = "/register";
 
     private SelenideElement emailField = $("#email");
@@ -29,9 +29,8 @@ public class RegistrationPage extends BasePage{
         termsCheckbox.click();
     }
 
-    public HomePage submit() {
+    public void submit() {
         registerButton.click();
-        return new HomePage();
     }
 
     public void open() throws Exception {
