@@ -23,6 +23,7 @@ public class AuthorizationTest {
 //        AssertJ
 //        Hamcrest Matchers
 //        Написать побольше тестов бизнесовых внимательно отнестись к проверкам
+//        аннотации Junit beforeAll, beforeEach и тд
         assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
         assertEquals(baseUrl + "/home", url(), "Wrong url");
     }
