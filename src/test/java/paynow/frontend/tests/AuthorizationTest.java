@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AuthorizationTest {
-    AuthorizationPage authorizationPage = new AuthorizationPage();
+    AuthorizationPage authorizationPage = new AuthorizationPage(true);
 
     @Test
     public void successAuth() throws Exception {
@@ -19,6 +19,10 @@ public class AuthorizationTest {
         authorizationPage.putOnFlagAcceptTerms();
         authorizationPage.submit();
         HomePage homePage = new HomePage();
+
+//        AssertJ
+//        Hamcrest Matchers
+//        Написать побольше тестов бизнесовых внимательно отнестись к проверкам
         assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
         assertEquals(baseUrl + "/home", url(), "Wrong url");
     }

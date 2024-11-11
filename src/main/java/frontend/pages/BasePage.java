@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class BasePage {
     String baseUrl;
-    private String login;
+    private String login; // не нравится использование переменных тут
     private String password;
 
     public BasePage() {

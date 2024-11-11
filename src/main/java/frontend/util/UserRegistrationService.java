@@ -30,6 +30,8 @@ public class UserRegistrationService {
         }
     }
 
+    // Авторизация по апи
+
     public static class UserRequestBuilder {
         private final Map<String, String> requestBody = new HashMap<>();
 
