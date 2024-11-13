@@ -13,8 +13,7 @@ public class HomePage extends BasePage {
         return homeLabel;
     }
 
-    public void open() throws Exception {
-        register();
+    public void open() {
         open(homeUrlPath);
     }
 }

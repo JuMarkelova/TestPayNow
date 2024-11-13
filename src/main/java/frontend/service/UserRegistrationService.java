@@ -1,5 +1,7 @@
-package frontend.util;
+package frontend.service;
 
+import frontend.entity.UserResponseWrapper;
+import frontend.entity.User;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
@@ -13,7 +15,8 @@ public class UserRegistrationService {
         RestAssured.baseURI = REGISTER_URL;
     }
 
-    public Map<String, String> registerNewUser(UserRequestBuilder builder) {
+    // юля: обновила метод, теперь он возвращает обхект класса User (по сути там поля тела ответа по юзеру)
+    public User registerNewUser(UserRequestBuilder builder) {
         Response response = RestAssured
                 .given()
                 .header("Content-Type", "application/json")
@@ -21,10 +24,8 @@ public class UserRegistrationService {
                 .post();
 
         if (response.statusCode() == 200 || response.statusCode() == 201) {
-            Map<String, String> result = new HashMap<>();
-            result.put("email", builder.build().get("email"));
-            result.put("password", builder.build().get("password"));
-            return result;
+            UserResponseWrapper userResponseWrapper = response.getBody().as(UserResponseWrapper.class);
+            return userResponseWrapper.getResp();
         } else {
             throw new RuntimeException("Error while creating user: " + response.getBody().asString());
         }

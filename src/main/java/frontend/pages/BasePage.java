@@ -2,29 +2,20 @@ package frontend.pages;
 
 import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
+import frontend.entity.User;
+import frontend.service.UserRegistrationService;
 import frontend.util.DataGenerator;
-import frontend.util.UserRegistrationService;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 import java.util.Properties;
 
 public class BasePage {
     String baseUrl;
-    private String login; // не нравится использование переменных тут
-    private String password;
+// не нравится использование переменных тут (юля: это про login, password, убрала их)
 
     public BasePage() {
         baseUrl = getBaseUrl();
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     private String getBaseUrl() {
@@ -47,7 +38,8 @@ public class BasePage {
         Selenide.open(baseUrl + urlPath);
     }
 
-    public void register() {
+    // юля: теперь метод возвращает объект класса User вместо сохранения логина и пароля
+    public User register() {
         UserRegistrationService userRegistrationService = new UserRegistrationService();
         Faker faker = new Faker();
         UserRegistrationService.UserRequestBuilder builder = new UserRegistrationService.UserRequestBuilder()
@@ -56,8 +48,6 @@ public class BasePage {
                 .withName(faker.name().firstName())
                 .withNumber(DataGenerator.numberGenerator())
                 .withPin(DataGenerator.numberGenerator());
-        Map<String, String> credentials = userRegistrationService.registerNewUser(builder);
-        this.login = credentials.get("email");
-        this.password = credentials.get("password");
+        return userRegistrationService.registerNewUser(builder);
     }
 }

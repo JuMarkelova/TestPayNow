@@ -2,7 +2,6 @@ package paynow.frontend.tests;
 
 import com.codeborne.selenide.Selenide;
 import frontend.pages.HomePage;
-import frontend.util.UserRegistrationService;
 import org.junit.jupiter.api.Test;
 
 public class HomeTest {
