@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AuthorizationTest {
     AuthorizationPage authorizationPage = new AuthorizationPage();
 
-
     @Test
     public void successAuth() throws Exception {
         User user = authorizationPage.register();
@@ -24,11 +23,12 @@ public class AuthorizationTest {
         authorizationPage.submit();
         HomePage homePage = new HomePage();
 
-        //        AssertJ
+//        AssertJ
 //        Hamcrest Matchers
 //        Написать побольше тестов бизнесовых внимательно отнестись к проверкам
 //        аннотации Junit beforeAll, beforeEach и тд
         assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
-        assertEquals(baseUrl + "/home", url(), "Wrong url");
+        assertEquals(homePage.getNameWelcomeElement(), user.getName(), "Incorrect name displayed");
+        assertEquals(homePage.baseUrl + "/home", url(), "Wrong url");
     }
 }

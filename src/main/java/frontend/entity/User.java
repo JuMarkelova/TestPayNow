@@ -91,4 +91,20 @@ public class User {
     public void set__v(int __v) {
         this.__v = __v;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", number=" + number +
+                ", balance=" + balance +
+                ", address='" + address + '\'' +
+                ", uid='" + uid + '\'' +
+                ", pin=" + pin +
+                ", _id='" + _id + '\'' +
+                ", __v=" + __v +
+                '}';
+    }
 }

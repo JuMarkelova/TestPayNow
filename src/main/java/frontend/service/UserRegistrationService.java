@@ -25,7 +25,9 @@ public class UserRegistrationService {
 
         if (response.statusCode() == 200 || response.statusCode() == 201) {
             UserResponseWrapper userResponseWrapper = response.getBody().as(UserResponseWrapper.class);
-            return userResponseWrapper.getResp();
+            User user = userResponseWrapper.getResp();
+            System.out.println(user);
+            return user;
         } else {
             throw new RuntimeException("Error while creating user: " + response.getBody().asString());
         }

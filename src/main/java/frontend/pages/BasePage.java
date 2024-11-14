@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class BasePage {
-    String baseUrl;
+    public String baseUrl;
 // не нравится использование переменных тут (юля: это про login, password, убрала их)
 
     public BasePage() {

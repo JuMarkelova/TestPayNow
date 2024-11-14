@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 public class HomeTest {
     private HomePage homePage = new HomePage();
 
+
+
     @Test
     public void test() throws Exception {
         homePage.open();
