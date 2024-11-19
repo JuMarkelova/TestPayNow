@@ -32,6 +32,7 @@ public class RegisterTest {
         registrationPage.submit();
         HomePage homePage = new HomePage();
         assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
+        assertEquals(homePage.getNameWelcomeElement(), name, "Incorrect name displayed");
         assertEquals(homePage.baseUrl + "/home", url(), "Wrong url");
     }
 }

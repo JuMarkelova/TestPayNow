@@ -1,7 +1,9 @@
 package frontend.service;
 
+import com.codeborne.selenide.Selenide;
 import frontend.entity.UserResponseWrapper;
 import frontend.entity.User;
+import frontend.entity.UserWithToken;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
@@ -16,7 +18,7 @@ public class UserRegistrationService {
     }
 
     // юля: обновила метод, теперь он возвращает обхект класса User (по сути там поля тела ответа по юзеру)
-    public User registerNewUser(UserRequestBuilder builder) {
+    public UserWithToken registerNewUser(UserRequestBuilder builder) {
         Response response = RestAssured
                 .given()
                 .header("Content-Type", "application/json")
@@ -26,14 +28,32 @@ public class UserRegistrationService {
         if (response.statusCode() == 200 || response.statusCode() == 201) {
             UserResponseWrapper userResponseWrapper = response.getBody().as(UserResponseWrapper.class);
             User user = userResponseWrapper.getResp();
+            String token = userResponseWrapper.getToken();
+            System.out.println(userResponseWrapper);
             System.out.println(user);
-            return user;
+            return new UserWithToken(user, token);
         } else {
             throw new RuntimeException("Error while creating user: " + response.getBody().asString());
         }
     }
 
     // Авторизация по апи
+
+    public void openPageAsAuthenticatedUser(String url, String token) {
+        Selenide.open("about:blank");
+
+        Selenide.executeJavaScript("localStorage.setItem('authToken', arguments[0]);", token);
+
+        Selenide.open(url);
+    }
+
+//    public String authenticateUser(User user) {
+//        Response response = RestAssured
+//                .given()
+//                .header("Content-Type", "application/json")
+//                .body(user)
+//                .
+//    }
 
     public static class UserRequestBuilder {
         private final Map<String, String> requestBody = new HashMap<>();

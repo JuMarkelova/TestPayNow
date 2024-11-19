@@ -19,4 +19,12 @@ public class UserResponseWrapper {
     public void setResp(User resp) {
         this.resp = resp;
     }
+
+    @Override
+    public String toString() {
+        return "UserResponseWrapper{" +
+                "token='" + token + '\'' +
+                ", resp=" + resp +
+                '}';
+    }
 }

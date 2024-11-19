@@ -3,6 +3,7 @@ package frontend.pages;
 import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
 import frontend.entity.User;
+import frontend.entity.UserWithToken;
 import frontend.service.UserRegistrationService;
 import frontend.util.DataGenerator;
 
@@ -39,7 +40,7 @@ public class BasePage {
     }
 
     // юля: теперь метод возвращает объект класса User вместо сохранения логина и пароля
-    public User register() {
+    public UserWithToken register() {
         UserRegistrationService userRegistrationService = new UserRegistrationService();
         Faker faker = new Faker();
         UserRegistrationService.UserRequestBuilder builder = new UserRegistrationService.UserRequestBuilder()
@@ -49,5 +50,10 @@ public class BasePage {
                 .withNumber(DataGenerator.numberGenerator())
                 .withPin(DataGenerator.numberGenerator());
         return userRegistrationService.registerNewUser(builder);
+    }
+
+    public void openAuthorized(String urlPath, String token) {
+        UserRegistrationService userRegistrationService = new UserRegistrationService();
+        userRegistrationService.openPageAsAuthenticatedUser(urlPath, token);
     }
 }
