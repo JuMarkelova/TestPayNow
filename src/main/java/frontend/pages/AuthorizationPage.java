@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class AuthorizationPage extends BasePage {
     // Юля: начиталась, что в конструкторе никакой логики быть не должно
-    //только можено параметрами передать значения переменных экземпляра, поэому не делаем так
+    //только можено параметрами передать значения переменных экземпляра, поэтому не делаем так
 
 //    Подумать может лучше регистрировать в конструкторе?
 //    public AuthorizationPage(boolean shouldRegister) {

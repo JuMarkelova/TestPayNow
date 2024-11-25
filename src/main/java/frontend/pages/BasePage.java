@@ -2,7 +2,6 @@ package frontend.pages;
 
 import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
-import frontend.entity.User;
 import frontend.entity.UserWithToken;
 import frontend.service.UserRegistrationService;
 import frontend.util.DataGenerator;

@@ -5,8 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationPage extends BasePage {
-    private String registerUrlPath = "/register";
-
+    private final String REGISTER_URL_PATH = "/register";
     private SelenideElement emailField = $("#email");
     private SelenideElement passwordField = $("#password");
     private SelenideElement confirmPasswordField = $("#confirm-password");
@@ -34,6 +33,6 @@ public class RegistrationPage extends BasePage {
     }
 
     public void open() throws Exception {
-        open(registerUrlPath);
+        open(REGISTER_URL_PATH);
     }
 }

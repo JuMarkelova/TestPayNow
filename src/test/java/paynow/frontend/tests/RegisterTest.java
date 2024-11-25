@@ -6,7 +6,6 @@ import frontend.util.DataGenerator;
 import org.junit.jupiter.api.Test;
 import frontend.pages.RegistrationPage;
 
-import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -31,8 +30,8 @@ public class RegisterTest {
         registrationPage.putOnFlagAcceptTerms();
         registrationPage.submit();
         HomePage homePage = new HomePage();
+        assertEquals(homePage.baseUrl + homePage.getHOME_URL_PATH(), url(), "Wrong url");
         assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
         assertEquals(homePage.getNameWelcomeElement(), name, "Incorrect name displayed");
-        assertEquals(homePage.baseUrl + "/home", url(), "Wrong url");
     }
 }

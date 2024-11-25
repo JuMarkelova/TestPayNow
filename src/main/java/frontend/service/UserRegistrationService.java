@@ -29,8 +29,8 @@ public class UserRegistrationService {
             UserResponseWrapper userResponseWrapper = response.getBody().as(UserResponseWrapper.class);
             User user = userResponseWrapper.getResp();
             String token = userResponseWrapper.getToken();
-            System.out.println(userResponseWrapper);
-            System.out.println(user);
+//            System.out.println(userResponseWrapper);
+//            System.out.println(user);
             return new UserWithToken(user, token);
         } else {
             throw new RuntimeException("Error while creating user: " + response.getBody().asString());
@@ -46,14 +46,6 @@ public class UserRegistrationService {
 
         Selenide.open(url);
     }
-
-//    public String authenticateUser(User user) {
-//        Response response = RestAssured
-//                .given()
-//                .header("Content-Type", "application/json")
-//                .body(user)
-//                .
-//    }
 
     public static class UserRequestBuilder {
         private final Map<String, String> requestBody = new HashMap<>();

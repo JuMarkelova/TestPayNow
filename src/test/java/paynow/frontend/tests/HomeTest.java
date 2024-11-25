@@ -1,17 +1,42 @@
 package paynow.frontend.tests;
 
-import com.codeborne.selenide.Selenide;
-import frontend.pages.HomePage;
+import frontend.pages.*;
 import org.junit.jupiter.api.Test;
 
-public class HomeTest {
-    private HomePage homePage = new HomePage();
+import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.assertj.core.api.Assertions.assertThat;
 
-
+public class HomeTest extends BaseTest {
 
     @Test
-    public void test() throws Exception {
-        homePage.open();
-        Selenide.sleep(5000);
+    public void goToWalletPage() throws Exception {
+        authorizationPage.open();
+        authorizationPage.fillAuthForm("warner.vandervort@hotmail.com", "sh08vf0z08ef1o");
+        authorizationPage.putOnFlagAcceptTerms();
+        authorizationPage.submit();
+        HomePage homePage = new HomePage();
+        homePage.clickWalletToGoButton();
+        WalletPage walletPage = new WalletPage();
+        assertThat(walletPage.getWalletTitle().exists())
+                .isTrue();
+        assertThat(url())
+                .as("Wrong url")
+                .isEqualTo(homePage.baseUrl + walletPage.getWALLET_URL_PATH());
+    }
+
+    @Test
+    public void goToTransferPage() throws Exception {
+        authorizationPage.open();
+        authorizationPage.fillAuthForm("warner.vandervort@hotmail.com", "sh08vf0z08ef1o");
+        authorizationPage.putOnFlagAcceptTerms();
+        authorizationPage.submit();
+        HomePage homePage = new HomePage();
+        homePage.clickTransferToGoButton();
+        TransferPage transferPage = new TransferPage();
+        assertThat(transferPage.getTransferTitle().exists())
+                .isTrue();
+        assertThat(url())
+                .as("Wrong url")
+                .isEqualTo(homePage.baseUrl + transferPage.getTRANSFER_URL_PATH());
     }
 }

@@ -1,39 +1,68 @@
 package paynow.frontend.tests;
 
+import com.codeborne.selenide.Selenide;
 import frontend.entity.User;
 import frontend.entity.UserWithToken;
 import frontend.pages.AuthorizationPage;
+import frontend.pages.BasePage;
 import frontend.pages.HomePage;
+import frontend.pages.RegistrationPage;
+import frontend.service.UserRegistrationService;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.WebDriverRunner.url;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class AuthorizationTest {
-    AuthorizationPage authorizationPage = new AuthorizationPage();
+
+public class AuthorizationTest extends BaseTest {
+
+//    @BeforeAll
+//    public static void setUp() {
+//        BaseTest.setup();
+//    }
+
+//    @Test
+//    public void testGoogleSearch() {
+//        BaseTest.setup();
+//        open("https://www.google.com");
+//        Selenide.sleep(10000);
+//        $("[name='q']").setValue("Selenide").pressEnter();
+//        $("h3").shouldHave(text("Selenide: concise UI tests in Java"));
+//    }
 
     @Test
-    public void successAuth() throws Exception {
+    public void successAuthRegisteredUser() throws Exception {
         User user = authorizationPage.register().getUser();
+        System.out.println(user);
         authorizationPage.open();
         authorizationPage.fillAuthForm(user.getEmail(), user.getPassword());
         authorizationPage.putOnFlagAcceptTerms();
         authorizationPage.submit();
         HomePage homePage = new HomePage();
 
-//        AssertJ
-//        Hamcrest Matchers
+//        AssertJ -- посмотрела, использую
+//        Hamcrest Matchers -- ознакомилась, что есть
 //        Написать побольше тестов бизнесовых внимательно отнестись к проверкам
 //        аннотации Junit beforeAll, beforeEach и тд
-        assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
-        assertEquals(homePage.getNameWelcomeElement(), user.getName(), "Incorrect name displayed");
-        assertEquals(homePage.baseUrl + "/home", url(), "Wrong url");
+        assertThat(homePage.getHomeLabel().exists())
+                .as("There is no Home Element")
+                .isTrue();
+        assertThat(homePage.getNameWelcomeElement())
+                .as("Incorrect name displayed")
+                .isEqualTo(user.getName());
+        assertThat(url())
+                .as("Wrong url")
+                .isEqualTo(homePage.baseUrl + homePage.getHOME_URL_PATH());
+//        assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
+//        assertEquals(homePage.getNameWelcomeElement(), user.getName(), "Incorrect name displayed");
+//        assertEquals(homePage.baseUrl + "/home", url(), "Wrong url");
     }
 
     @Test
     public void test() {
         UserWithToken userWithToken = authorizationPage.register();
-
+        BasePage basePage = new BasePage();
+        basePage.openAuthorized("/home", userWithToken.getToken());
+        Selenide.sleep(5000);
     }
 }
