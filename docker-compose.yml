@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  selenoid:
+    image: aerokube/selenoid:latest
+    container_name: selenoid
+    platform: linux/amd64
+    ports:
+      - "4444:4444"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config:/etc/selenoid/:ro
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+      - SCREEN_DENSITY=1
+      - SELENOID_VIDEO=true
+      - TIMEZONE=Europe/Moscow
+
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest
+    container_name: selenoid-ui
+    platform: linux/amd64
+    links:
+      - selenoid
+    ports:
+      - "8080:8080"
+    environment:
+      - SELENOID_URI=http://selenoid:4444
+
+  chrome:
+    image: selenoid/vnc_chrome:116.0
+    container_name: selenoid-chrome
+    platform: linux/amd64
+    shm_size: 2g
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+      - SCREEN_DENSITY=1
+      - SELENOID_VIDEO=true
+      - TIMEZONE=Europe/Moscow
+    ports:
+      - "5900:5900"
+
+
+

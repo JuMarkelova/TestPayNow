@@ -4,34 +4,35 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class RegistrationPage {
+public class RegistrationPage extends BasePage {
+    private final String REGISTER_URL_PATH = "/register";
     private SelenideElement emailField = $("#email");
     private SelenideElement passwordField = $("#password");
     private SelenideElement confirmPasswordField = $("#confirm-password");
     private SelenideElement nameField = $("#name");
     private SelenideElement numberField = $("#number");
     private SelenideElement pinField = $("#pin");
-    private SelenideElement termsCheck = $("#terms");
+    private SelenideElement termsCheckbox = $("#terms");
     private SelenideElement registerButton = $("button[type='submit']");
 
-    public void open() {
-        com.codeborne.selenide.Selenide.open("register");
-    }
-
-    public void fillRegistrationForm(String email, String password, String name, String number, int pin) {
+    public void fillRegistrationForm(String email, String password, String name, String number, String pin) {
         emailField.setValue(email);
         passwordField.setValue(password);
         confirmPasswordField.setValue(password);
         nameField.setValue(name);
         numberField.setValue(number);
-        pinField.setValue(String.valueOf(pin));
+        pinField.setValue(pin);
     }
 
     public void putOnFlagAcceptTerms() {
-        termsCheck.click();
+        termsCheckbox.click();
     }
 
     public void submit() {
         registerButton.click();
+    }
+
+    public void open() throws Exception {
+        open(REGISTER_URL_PATH);
     }
 }
