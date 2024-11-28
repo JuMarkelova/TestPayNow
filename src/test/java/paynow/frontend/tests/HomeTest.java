@@ -17,6 +17,7 @@ public class HomeTest extends BaseTest {
         HomePage homePage = new HomePage();
         homePage.clickWalletToGoButton();
         WalletPage walletPage = new WalletPage();
+//какая-то существует для проверки (через базовую страницу) всех жлементов присутствующих на странице
         assertThat(walletPage.getWalletTitle().exists())
                 .isTrue();
         assertThat(url())

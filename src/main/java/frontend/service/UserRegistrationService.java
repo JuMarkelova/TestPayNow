@@ -38,6 +38,7 @@ public class UserRegistrationService {
     }
 
     // Авторизация по апи
+    //попробовать метод cookie
 
     public void openPageAsAuthenticatedUser(String url, String token) {
         Selenide.open("about:blank");

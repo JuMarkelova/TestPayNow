@@ -1,5 +1,6 @@
 package frontend.entity;
 
+//добавить lombok
 public class User {
     private String name;
     private String email;

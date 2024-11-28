@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class WalletPage {
+    //нужно ли единообразие xpath, css
     private final String WALLET_URL_PATH = "/wallet";
     private SelenideElement walletTitle = $(".pl-5.text-4xl.font-bold").shouldHave(Condition.text("Wallet"));
     private SelenideElement balanceContainer =
@@ -18,6 +19,7 @@ public class WalletPage {
     private SelenideElement inputCvvField = $("[name='cvv']");
     private SelenideElement inputCardTypeField = $("[name='card_type']");
     private SelenideElement inputAmountField = $("[name='amount']");
+    //сделать енамом типы карт
     private final String OPTION_CARD_TYPE_VISA = "Visa";
     private final String OPTION_CARD_TYPE_RU_PAY = "RuPay";
     private final String OPTION_CARD_TYPE_MASTERCARD = "MasterCard";
@@ -54,6 +56,7 @@ public class WalletPage {
     }
 
     //здесь наверное бы енам что ли добавить в карттайп, но пока так
+    //сделать дату датой?
     public void fillCardDetails(String name, String cardNumber, String expDate, String cvv, String cardType, int amount) {
         inputNameField.setValue(name);
         inputCardNumberField.setValue(cardNumber);

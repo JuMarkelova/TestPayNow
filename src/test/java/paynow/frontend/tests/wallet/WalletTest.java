@@ -14,13 +14,12 @@ public class WalletTest extends BaseTest {
 //        User user = homePage.register().getUser();
         authorizationPage.open();
 //        authorizationPage.fillAuthForm(user.getEmail, user.getPassword);
+        //вытащить в beforeAll авторизацию? может быть добавить в baseTest и исключить проверки регистрации
         authorizationPage.fillAuthForm("warner.vandervort@hotmail.com", "sh08vf0z08ef1o");
         authorizationPage.putOnFlagAcceptTerms();
         authorizationPage.submit();
         HomePage homePage = new HomePage();
-        assertThat(homePage.getHomeLabel().exists())
-                .as("There is no Home Element")
-                .isTrue();
+        //открыть wallet page сразу, а проверку перехода по кнопкке унести в home page
         int balanceBeforeAddingMoney = homePage.getAccountBalance();
         homePage.clickAddMoneyButton();
         WalletPage walletPage = new WalletPage();
