@@ -1,30 +1,14 @@
 package frontend.entity;
 
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Builder
 public class UserResponseWrapper {
     private String token;
     private User resp;
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public User getResp() {
-        return resp;
-    }
-
-    public void setResp(User resp) {
-        this.resp = resp;
-    }
-
-    @Override
-    public String toString() {
-        return "UserResponseWrapper{" +
-                "token='" + token + '\'' +
-                ", resp=" + resp +
-                '}';
-    }
 }
