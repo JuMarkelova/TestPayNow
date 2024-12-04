@@ -17,7 +17,6 @@ public class UserRegistrationService {
         RestAssured.baseURI = REGISTER_URL;
     }
 
-    // юля: обновила метод, теперь он возвращает обхект класса User (по сути там поля тела ответа по юзеру)
     public UserWithToken registerNewUser(UserRequestBuilder builder) {
         Response response = RestAssured
                 .given()

@@ -22,7 +22,7 @@ public class HomeTest extends BaseTest {
                 .isTrue();
         assertThat(url())
                 .as("Wrong url")
-                .isEqualTo(homePage.baseUrl + walletPage.getWALLET_URL_PATH());
+                .isEqualTo(homePage.baseUrl + walletPage.WALLET_URL_PATH);
     }
 
     @Test
@@ -38,6 +38,6 @@ public class HomeTest extends BaseTest {
                 .isTrue();
         assertThat(url())
                 .as("Wrong url")
-                .isEqualTo(homePage.baseUrl + transferPage.getTRANSFER_URL_PATH());
+                .isEqualTo(homePage.baseUrl + transferPage.TRANSFER_URL_PATH);
     }
 }

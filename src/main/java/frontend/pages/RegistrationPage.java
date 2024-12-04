@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationPage extends BasePage {
-    private final String REGISTER_URL_PATH = "/register";
+    public final String REGISTER_URL_PATH = "/register";
     private SelenideElement emailField = $("#email");
     private SelenideElement passwordField = $("#password");
     private SelenideElement confirmPasswordField = $("#confirm-password");

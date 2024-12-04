@@ -30,7 +30,7 @@ public class RegisterTest {
         registrationPage.putOnFlagAcceptTerms();
         registrationPage.submit();
         HomePage homePage = new HomePage();
-        assertEquals(homePage.baseUrl + homePage.getHOME_URL_PATH(), url(), "Wrong url");
+        assertEquals(homePage.baseUrl + homePage.HOME_URL_PATH, url(), "Wrong url");
         assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
         assertEquals(homePage.getNameWelcomeElement(), name, "Incorrect name displayed");
     }

@@ -1,9 +1,12 @@
 package paynow.frontend.tests.wallet;
 
+import frontend.entity.CardType;
 import frontend.pages.HomePage;
 import frontend.pages.WalletPage;
 import org.junit.jupiter.api.Test;
 import paynow.frontend.tests.BaseTest;
+
+import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,9 +35,9 @@ public class WalletTest extends BaseTest {
         int amountMoneyToAdd = 5000;
         walletPage.fillCardDetails("LALALA",
                 "929292929292",
-                "12122024",
+                LocalDate.of(2024, 12, 31),
                 "432",
-                walletPage.getOPTION_CARD_TYPE_VISA(),
+                CardType.VISA,
                 amountMoneyToAdd
         );
         walletPage.clickPayButton();

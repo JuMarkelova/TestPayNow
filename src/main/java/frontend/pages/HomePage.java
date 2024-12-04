@@ -2,13 +2,15 @@ package frontend.pages;
 
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
+import lombok.Getter;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class HomePage extends BasePage {
-    private final String HOME_URL_PATH = "/home";
+    public final String HOME_URL_PATH = "/home";
+    @Getter
     private SelenideElement homeLabel = $("div").shouldHave(text("Home"));
     private SelenideElement welcomeElement = $x("//h1[contains(text(), 'Welcome back')]");
     private SelenideElement addMoneyButton = $(Selectors.byText("Add Money"));
@@ -16,14 +18,6 @@ public class HomePage extends BasePage {
             $(".text-4xl.pt-4.font-bold.text-center");
     private SelenideElement walletToGoButton = $x("//div[contains(@class, 'text-black') and .//div[text()='Wallet']]");
     private SelenideElement transferToGoButton = $x("//div[contains(@class, 'text-black') and .//div[text()='Transfer']]");
-
-    public String getHOME_URL_PATH() {
-        return HOME_URL_PATH;
-    }
-
-    public SelenideElement getHomeLabel() {
-        return homeLabel;
-    }
 
     public String getNameWelcomeElement() {
         return welcomeElement.getText().replace("Welcome back", "").trim();

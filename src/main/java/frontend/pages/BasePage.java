@@ -12,7 +12,6 @@ import java.util.Properties;
 
 public class BasePage {
     public String baseUrl;
-// не нравится использование переменных тут (юля: это про login, password, убрала их)
 
     public BasePage() {
         baseUrl = getBaseUrl();
@@ -38,7 +37,6 @@ public class BasePage {
         Selenide.open(baseUrl + urlPath);
     }
 
-    // юля: теперь метод возвращает объект класса User вместо сохранения логина и пароля
     public UserWithToken register() {
         UserRegistrationService userRegistrationService = new UserRegistrationService();
         Faker faker = new Faker();

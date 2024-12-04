@@ -52,7 +52,7 @@ public class AuthorizationTest extends BaseTest {
                 .isEqualTo(user.getName());
         assertThat(url())
                 .as("Wrong url")
-                .isEqualTo(homePage.baseUrl + homePage.getHOME_URL_PATH());
+                .isEqualTo(homePage.baseUrl + homePage.HOME_URL_PATH);
 //        assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
 //        assertEquals(homePage.getNameWelcomeElement(), user.getName(), "Incorrect name displayed");
 //        assertEquals(homePage.baseUrl + "/home", url(), "Wrong url");

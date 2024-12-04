@@ -2,13 +2,19 @@ package frontend.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import frontend.entity.CardType;
+import lombok.Getter;
+
+import java.time.LocalDate;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class WalletPage {
     //нужно ли единообразие xpath, css
-    private final String WALLET_URL_PATH = "/wallet";
+    // я не нашла информации о том, чтобы использовать что-то одно на проекте, наверное, зависит от компании
+    public final String WALLET_URL_PATH = "/wallet";
+    @Getter
     private SelenideElement walletTitle = $(".pl-5.text-4xl.font-bold").shouldHave(Condition.text("Wallet"));
     private SelenideElement balanceContainer =
             $(".h-32.text-6xl.font-bold.text-center.flex.flex-col.items-center.justify-center.overflow-auto div");
@@ -20,30 +26,8 @@ public class WalletPage {
     private SelenideElement inputCardTypeField = $("[name='card_type']");
     private SelenideElement inputAmountField = $("[name='amount']");
     //сделать енамом типы карт
-    private final String OPTION_CARD_TYPE_VISA = "Visa";
-    private final String OPTION_CARD_TYPE_RU_PAY = "RuPay";
-    private final String OPTION_CARD_TYPE_MASTERCARD = "MasterCard";
+// убрала переменные, перенесла в енам
     private SelenideElement payButton = $x("//button[@type='submit' and text()='Pay']");
-
-    public String getWALLET_URL_PATH() {
-        return WALLET_URL_PATH;
-    }
-
-    public String getOPTION_CARD_TYPE_VISA() {
-        return OPTION_CARD_TYPE_VISA;
-    }
-
-    public String getOPTION_CARD_TYPE_RU_PAY() {
-        return OPTION_CARD_TYPE_RU_PAY;
-    }
-
-    public String getOPTION_CARD_TYPE_MASTERCARD() {
-        return OPTION_CARD_TYPE_MASTERCARD;
-    }
-
-    public SelenideElement getWalletTitle() {
-        return walletTitle;
-    }
 
     public void clickAddMoneyButton() {
         addMoneyButton.click();
@@ -56,13 +40,20 @@ public class WalletPage {
     }
 
     //здесь наверное бы енам что ли добавить в карттайп, но пока так
+    //добавила енам с типами карт
     //сделать дату датой?
-    public void fillCardDetails(String name, String cardNumber, String expDate, String cvv, String cardType, int amount) {
+// сделала дату с типом LocalDate
+    public void fillCardDetails(String name,
+                                String cardNumber,
+                                LocalDate expirationDate,
+                                String cvv,
+                                CardType cardType,
+                                int amount) {
         inputNameField.setValue(name);
         inputCardNumberField.setValue(cardNumber);
-        inputExpDateField.setValue(expDate);
+        inputExpDateField.setValue(String.valueOf(expirationDate));
         inputCvvField.setValue(cvv);
-        inputCardTypeField.selectOption(cardType);
+        inputCardTypeField.selectOption(cardType.getDisplayName());
         inputAmountField.setValue(String.valueOf(amount));
     }
 
