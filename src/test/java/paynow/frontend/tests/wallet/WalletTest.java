@@ -11,29 +11,22 @@ import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WalletTest extends BaseTest {
+    WalletPage walletPage;
 
     @Test
     public void addMoneyToWallet() throws Exception {
-//        User user = homePage.register().getUser();
-        authorizationPage.open();
-//        authorizationPage.fillAuthForm(user.getEmail, user.getPassword);
         //вытащить в beforeAll авторизацию? может быть добавить в baseTest и исключить проверки регистрации
-        authorizationPage.fillAuthForm("warner.vandervort@hotmail.com", "sh08vf0z08ef1o");
-        authorizationPage.putOnFlagAcceptTerms();
-        authorizationPage.submit();
-        HomePage homePage = new HomePage();
-        //открыть wallet page сразу, а проверку перехода по кнопкке унести в home page
-        int balanceBeforeAddingMoney = homePage.getAccountBalance();
-        homePage.clickAddMoneyButton();
-        WalletPage walletPage = new WalletPage();
-        assertThat(walletPage.getWalletTitle().exists())
-                .as("There is no Wallet Title")
-                .isTrue();
-        assertThat(walletPage.getAccountBalance())
-                .isEqualTo(balanceBeforeAddingMoney);
+        //сделала, вытащила метод auth()
+//        HomePage homePage = new HomePage();
+        //открыть wallet page сразу, а проверку перехода по кнопке унести в home page
+        //сделала
+        homePage.clickWalletToGoButton();
+        walletPage = new WalletPage();
+//                walletPage.open();
+        int balanceBeforeAddingMoney = walletPage.getAccountBalance();
         walletPage.clickAddMoneyButton();
         int amountMoneyToAdd = 5000;
-        walletPage.fillCardDetails("LALALA",
+        walletPage.fillCardDetails("Name",
                 "929292929292",
                 LocalDate.of(2024, 12, 31),
                 "432",

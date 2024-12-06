@@ -21,6 +21,7 @@ public class AuthorizationTest extends BaseTest {
 //        BaseTest.setup();
 //    }
 
+    //для докера
 //    @Test
 //    public void testGoogleSearch() {
 //        BaseTest.setup();
@@ -32,13 +33,15 @@ public class AuthorizationTest extends BaseTest {
 
     @Test
     public void successAuthRegisteredUser() throws Exception {
-        User user = authorizationPage.register().getUser();
-        System.out.println(user);
-        authorizationPage.open();
-        authorizationPage.fillAuthForm(user.getEmail(), user.getPassword());
-        authorizationPage.putOnFlagAcceptTerms();
-        authorizationPage.submit();
-        HomePage homePage = new HomePage();
+        //получчается, в этом тесте просто закомментила все
+
+//        User user = authorizationPage.register().getUser();
+//        System.out.println(user);
+//        authorizationPage.open();
+//        authorizationPage.fillAuthForm(user.getEmail(), user.getPassword());
+//        authorizationPage.putOnFlagAcceptTerms();
+//        authorizationPage.submit();
+//        HomePage homePage = new HomePage();
 
 //        AssertJ -- посмотрела, использую
 //        Hamcrest Matchers -- ознакомилась, что есть
@@ -49,20 +52,17 @@ public class AuthorizationTest extends BaseTest {
                 .isTrue();
         assertThat(homePage.getNameWelcomeElement())
                 .as("Incorrect name displayed")
-                .isEqualTo(user.getName());
+                .isEqualTo(BaseTest.user.getName());
         assertThat(url())
                 .as("Wrong url")
                 .isEqualTo(homePage.baseUrl + homePage.HOME_URL_PATH);
-//        assertTrue(homePage.getHomeLabel().exists(), "There is no Home Element");
-//        assertEquals(homePage.getNameWelcomeElement(), user.getName(), "Incorrect name displayed");
-//        assertEquals(homePage.baseUrl + "/home", url(), "Wrong url");
     }
 
-    @Test
-    public void test() {
-        UserWithToken userWithToken = authorizationPage.register();
-        BasePage basePage = new BasePage();
-        basePage.openAuthorized("/home", userWithToken.getToken());
-        Selenide.sleep(5000);
-    }
+//    @Test
+//    public void test() {
+//        UserWithToken userWithToken = authorizationPage.register();
+//        BasePage basePage = new BasePage();
+//        basePage.openAuthorized("/home", userWithToken.getToken());
+//        Selenide.sleep(5000);
+//    }
 }

@@ -23,10 +23,7 @@ public class BasePage {
 
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("test.properties")) {
             properties.load(input);
-
             baseUrl = properties.getProperty("base.url");
-            System.out.println(baseUrl);
-
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class WalletPage {
+public class WalletPage extends BasePage {
     //нужно ли единообразие xpath, css
     // я не нашла информации о том, чтобы использовать что-то одно на проекте, наверное, зависит от компании
     public final String WALLET_URL_PATH = "/wallet";
@@ -31,6 +31,13 @@ public class WalletPage {
 
     public void clickAddMoneyButton() {
         addMoneyButton.click();
+    }
+
+    public void open() {
+        try {
+            open(WALLET_URL_PATH);
+        } catch (Exception ex) {
+        }
     }
 
     public int getAccountBalance() {

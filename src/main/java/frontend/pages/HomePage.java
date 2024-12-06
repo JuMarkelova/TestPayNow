@@ -19,6 +19,17 @@ public class HomePage extends BasePage {
     private SelenideElement walletToGoButton = $x("//div[contains(@class, 'text-black') and .//div[text()='Wallet']]");
     private SelenideElement transferToGoButton = $x("//div[contains(@class, 'text-black') and .//div[text()='Transfer']]");
 
+//    public HomePage() {
+//        this.open();
+//    }
+
+    public void open() {
+        try {
+            open(HOME_URL_PATH);
+        } catch (Exception ex) {
+        }
+    }
+
     public String getNameWelcomeElement() {
         return welcomeElement.getText().replace("Welcome back", "").trim();
     }
@@ -33,11 +44,5 @@ public class HomePage extends BasePage {
 
     public void clickTransferToGoButton() {
         transferToGoButton.click();
-    }
-
-    public int getAccountBalance() {
-        String balanceText = balanceContainer.getText();
-        String numericBalance = balanceText.replaceAll("[^0-9]", "");
-        return Integer.parseInt(numericBalance);
     }
 }

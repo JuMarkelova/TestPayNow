@@ -5,14 +5,14 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class AuthorizationPage extends BasePage {
-    String authorizationUrlPath = "/";
+    String AUTH_URL_PATH = "/";
     SelenideElement emailField = $("#email");
     SelenideElement passwordField = $("#password");
     SelenideElement termsCheckbox = $("#remember");
     SelenideElement loginButton = $("button[type='submit']");
 
     public void open() throws Exception {
-        open(authorizationUrlPath);
+        open(AUTH_URL_PATH);
     }
 
     public void putOnFlagAcceptTerms() {
