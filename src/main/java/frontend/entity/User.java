@@ -10,14 +10,15 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class User {
+    private String token;
     private String name;
     private String email;
     private String password;
-    private long number;
-    private int balance;
-    private String address;
-    private String uid;
-    private long pin;
-    private String _id;
-    private int __v;
+//    private long number;
+//    private int balance;
+//    private String address;
+//    private String uid;
+//    private long pin;
+//    private String _id;
+//    private int __v;
 }

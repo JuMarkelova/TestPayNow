@@ -1,9 +1,8 @@
 package common.service;
 
+import backend.model.AuthResponse;
 import com.codeborne.selenide.Selenide;
-import frontend.entity.UserResponseWrapper;
 import frontend.entity.User;
-import frontend.entity.UserWithToken;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
@@ -17,7 +16,7 @@ public class UserRegistrationService {
         RestAssured.baseURI = REGISTER_URL;
     }
 
-    public UserWithToken registerNewUser(UserRequestBuilder builder) {
+    public User registerNewUser(UserRequestBuilder builder) {
         Response response = RestAssured
                 .given()
                 .header("Content-Type", "application/json")
@@ -25,12 +24,14 @@ public class UserRegistrationService {
                 .post();
 
         if (response.statusCode() == 200 || response.statusCode() == 201) {
-            UserResponseWrapper userResponseWrapper = response.getBody().as(UserResponseWrapper.class);
-            User user = userResponseWrapper.getResp();
-            String token = userResponseWrapper.getToken();
-//            System.out.println(userResponseWrapper);
-//            System.out.println(user);
-            return new UserWithToken(user, token);
+            AuthResponse authResponse = response.getBody().as(AuthResponse.class);
+
+            User user = new User();
+            user.setToken(authResponse.getToken());
+            user.setEmail(authResponse.getResp().getEmail());
+            user.setName(authResponse.getResp().getName());
+            user.setPassword(authResponse.getResp().getPassword());
+            return user;
         } else {
             throw new RuntimeException("Error while creating user: " + response.getBody().asString());
         }

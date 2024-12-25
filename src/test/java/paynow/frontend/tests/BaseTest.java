@@ -1,7 +1,6 @@
 package paynow.frontend.tests;
 
 import frontend.entity.User;
-import frontend.entity.UserWithToken;
 import frontend.pages.AuthorizationPage;
 import frontend.pages.HomePage;
 import org.junit.jupiter.api.BeforeAll;
@@ -28,8 +27,7 @@ public abstract class BaseTest {
 
     @BeforeAll
     public void register() throws Exception {
-        UserWithToken userWithToken = authorizationPage.register();
-        user = userWithToken.getUser();
+        user = authorizationPage.register();
     }
 
     @BeforeEach

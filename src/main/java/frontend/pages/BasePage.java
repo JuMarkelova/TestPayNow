@@ -2,7 +2,7 @@ package frontend.pages;
 
 import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
-import frontend.entity.UserWithToken;
+import frontend.entity.User;
 import common.service.UserRegistrationService;
 import common.util.DataGenerator;
 import common.util.PropertiesUtil;
@@ -18,7 +18,7 @@ public class BasePage {
         Selenide.open(baseUrl + urlPath);
     }
 
-    public UserWithToken register() {
+    public User register() {
         UserRegistrationService userRegistrationService = new UserRegistrationService();
         Faker faker = new Faker();
         UserRegistrationService.UserRequestBuilder builder = new UserRegistrationService.UserRequestBuilder()
