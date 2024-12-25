@@ -35,6 +35,7 @@ public abstract class BaseTest {
     @BeforeEach
     public void auth() throws Exception {
         authorizationPage.open();
+        System.out.println(user.getEmail() + " " + user.getPassword());
         authorizationPage.fillAuthForm(user.getEmail(), user.getPassword());
         authorizationPage.putOnFlagAcceptTerms();
         authorizationPage.submit();

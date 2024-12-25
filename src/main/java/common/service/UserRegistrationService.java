@@ -1,4 +1,4 @@
-package frontend.service;
+package common.service;
 
 import com.codeborne.selenide.Selenide;
 import frontend.entity.UserResponseWrapper;

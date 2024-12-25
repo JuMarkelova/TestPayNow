@@ -1,4 +1,4 @@
-package frontend.util;
+package common.util;
 
 import java.util.concurrent.ThreadLocalRandom;
 

@@ -7,11 +7,13 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomeTest extends BaseTest {
+    WalletPage walletPage;
 
     @Test
     public void goToWalletPage() throws Exception {
         homePage.clickWalletToGoButton();
-        WalletPage walletPage = new WalletPage();
+        walletPage = new WalletPage();
+//        WalletPage walletPage = new WalletPage();
         //какая-то существует для проверки (через базовую страницу) всех элементов присутствующих на странице
         // не разбиралась
         assertThat(walletPage.getWalletTitle().exists())

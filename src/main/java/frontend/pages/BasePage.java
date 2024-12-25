@@ -3,31 +3,15 @@ package frontend.pages;
 import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
 import frontend.entity.UserWithToken;
-import frontend.service.UserRegistrationService;
-import frontend.util.DataGenerator;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import common.service.UserRegistrationService;
+import common.util.DataGenerator;
+import common.util.PropertiesUtil;
 
 public class BasePage {
     public String baseUrl;
 
     public BasePage() {
-        baseUrl = getBaseUrl();
-    }
-
-    private String getBaseUrl() {
-        Properties properties = new Properties();
-        String baseUrl = "";
-
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream("test.properties")) {
-            properties.load(input);
-            baseUrl = properties.getProperty("base.url");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return baseUrl;
+        baseUrl = PropertiesUtil.getProperty("base.url");
     }
 
     public void open(String urlPath) {

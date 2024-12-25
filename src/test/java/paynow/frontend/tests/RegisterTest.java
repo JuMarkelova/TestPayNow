@@ -2,7 +2,7 @@ package paynow.frontend.tests;
 
 import com.github.javafaker.Faker;
 import frontend.pages.HomePage;
-import frontend.util.DataGenerator;
+import common.util.DataGenerator;
 import org.junit.jupiter.api.Test;
 import frontend.pages.RegistrationPage;
 

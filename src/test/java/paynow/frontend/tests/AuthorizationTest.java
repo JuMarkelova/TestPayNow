@@ -1,13 +1,5 @@
 package paynow.frontend.tests;
 
-import com.codeborne.selenide.Selenide;
-import frontend.entity.User;
-import frontend.entity.UserWithToken;
-import frontend.pages.AuthorizationPage;
-import frontend.pages.BasePage;
-import frontend.pages.HomePage;
-import frontend.pages.RegistrationPage;
-import frontend.service.UserRegistrationService;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.WebDriverRunner.url;
